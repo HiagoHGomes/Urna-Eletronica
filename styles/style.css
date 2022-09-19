@@ -156,3 +156,10 @@ body {
     padding-left: 10px;
     border-top: 2px solid #000;
 }
+
+.aviso--grande {
+    font-size: 40px;
+    font-weight: bolder;
+    margin-top: 20px;
+    text-align: center;
+}

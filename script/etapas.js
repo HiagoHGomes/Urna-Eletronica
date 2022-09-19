@@ -16,7 +16,7 @@ let etapas = [
                 nome: 'Sandy Bochechas',
                 partido: 'Fenda do Biquini',
                 fotos:[
-                    {url:'.../images/sandy.png', legenda: 'Deputado Estadual'}
+                    {url:'../images/sandy.png', legenda: 'Deputado Estadual'}
                 ]
             },
         ]
