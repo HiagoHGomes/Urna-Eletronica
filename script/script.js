@@ -5,14 +5,17 @@ let aviso = document.querySelector('.d-2');
 let latereal = document.querySelector('.d-1-right');
 let numeros = document.querySelector('.d-1-3');
 
-//Variaveis de controle de abiente:
+//Variaveis de controle de ambiente:
 let etapaAtual = 0;
 let numero = '';
+let branco = false;
 //
 
 function comecarEtapa () {
     let etapa = etapas[etapaAtual];
     let numeroHTML = '';
+    numero = '';
+    branco = false;
     for(let i=0; i<etapa.numeros;i++) {
         if(i===0) {
             numeroHTML += '<div class="numero pisca"></div>';
@@ -47,7 +50,13 @@ function atualizaInterface() {
         descricao.innerHTML = `Nome: ${candidato.nome}</br>Partido: ${candidato.partido}`;
         let fotosHtml = '';
         for(let i in candidato.fotos) {
-            fotosHtml += `<div class="d-1-image"><img src="images/${candidato.fotos[i].url}" alt="">${candidato.fotos[i].legenda}</div>`;
+            if(candidato.fotos[i].small) {
+                fotosHtml += `<div class="d-1-image small"><img src="images/${candidato.fotos[i].url}" alt="">${candidato.fotos[i].legenda}</div>`;
+            }else{
+                fotosHtml += `<div class="d-1-image"><img src="images/${candidato.fotos[i].url}" alt="">${candidato.fotos[i].legenda}</div>`;
+            }
+
+            
         }
         latereal.innerHTML = fotosHtml;
     }else {
@@ -72,15 +81,39 @@ function clicou(n) {
     }
 }
 
-function branco() {
-
+function votoBranco() {
+    if(numero === '') {
+        branco = true;
+        seuVotoPara.style.display = 'block';
+        aviso.style.display = 'block';
+        numeros.innerHTML = '';
+        descricao.innerHTML = '<div class="aviso--grande pisca">VOTO EM BRANCO</>'
+    }else {
+        alert('Para votar em BRANCO, não pode ter digitado nenhum numero.')
+    }
 }
 
 function corrige() {
-
+    comecarEtapa();
 }
 
-function confrima() {
+function confirma() {
+    let etapa = etapas[etapaAtual];
+    let votoConfimardo = false;
+    if(branco == true) {
+        votoConfimardo = true;
+    }else if (numero.length === etapa.numeros) {
+        votoConfimardo = true;
+
+    }
+    if(votoConfimardo) {
+        etapaAtual++;
+        if(etapas[etapaAtual] !== undefined) {
+            comecarEtapa();
+        }else {
+            alert("Fim");
+        }
+    }
 
 }
 
