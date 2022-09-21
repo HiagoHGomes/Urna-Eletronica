@@ -10,12 +10,14 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
 }
 
 .urna {
     background-color: #dbd5c9;
     padding: 30px;
     display: flex;
+    margin-top: 100px;
 }
 
 .tela {
@@ -162,4 +164,13 @@ body {
     font-weight: bolder;
     margin-top: 20px;
     text-align: center;
+}
+
+.aviso--gigante {
+    font-size: 70px;
+    font-weight: bold;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

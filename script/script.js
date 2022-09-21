@@ -4,11 +4,11 @@ let descricao = document.querySelector('.d-1-4');
 let aviso = document.querySelector('.d-2');
 let latereal = document.querySelector('.d-1-right');
 let numeros = document.querySelector('.d-1-3');
-
 //Variaveis de controle de ambiente:
 let etapaAtual = 0;
 let numero = '';
 let branco = false;
+let votos = [];
 //
 
 function comecarEtapa () {
@@ -102,8 +102,17 @@ function confirma() {
     let votoConfimardo = false;
     if(branco == true) {
         votoConfimardo = true;
+        votos.push({
+            etapa: etapas[etapaAtual].titulo,
+            voto: 'branco'
+        });//para coletar os votos.
+
     }else if (numero.length === etapa.numeros) {
         votoConfimardo = true;
+        votos.push({
+            etapa: etapas[etapaAtual].titulo,
+            voto: 'branco'
+        });//para coletar os votos.
 
     }
     if(votoConfimardo) {
@@ -111,10 +120,20 @@ function confirma() {
         if(etapas[etapaAtual] !== undefined) {
             comecarEtapa();
         }else {
-            alert("Fim");
+            document.querySelector('.tela').innerHTML = '<div class="aviso--gigante pisca">FIM</>'
         }
     }
-
 }
+
+
+//usar o teclado:
+document.body.addEventListener('keyup', (event) => {
+    let numeral = event.key
+
+    let int = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    if (int.indexOf(numeral) != -1) {
+        clicou(numeral)
+    }
+});
 
 comecarEtapa();
