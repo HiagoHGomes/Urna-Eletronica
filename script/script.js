@@ -71,6 +71,8 @@ function clicou(n) {
     if(elNumero!== null) {
         elNumero.innerHTML = n;
         numero = `${numero}${n}`;
+        const audio = new Audio('audio/click.mp3');
+audio.play();
         elNumero.classList.remove('pisca');
         if(elNumero.nextElementSibling !== null) {
             elNumero.nextElementSibling.classList.add('pisca');
@@ -106,6 +108,8 @@ function confirma() {
             etapa: etapas[etapaAtual].titulo,
             voto: 'branco'
         });//para coletar os votos.
+        const audio = new Audio('audio/fim_do_voto.mp3');
+audio.play();
 
     }else if (numero.length === etapa.numeros) {
         votoConfimardo = true;
@@ -121,6 +125,8 @@ function confirma() {
             comecarEtapa();
         }else {
             document.querySelector('.tela').innerHTML = '<div class="aviso--gigante pisca">FIM</>'
+            const audio = new Audio('audio/fim_da_votacao.mp3');
+audio.play();
         }
     }
 }
